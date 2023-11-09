@@ -1,0 +1,97 @@
+Way(id=533757101, #tags=3, name='Vinarija Stobi')
+	craft: winery
+	name: Vinarija Stobi
+	website: https://www.stobiwinery.mk/
+	
+Way(id=180725215, #tags=11, name='Винарија Грков')
+	amenity: wine_cellar
+	attraction: winery
+	industrial: winery
+	int_name: Vinarija Grkov
+	landuse: industrial
+	man_made: winery
+	name: Винарија Грков
+	name:en: Grkov Winery
+	shop: wine
+	tasting: yes
+	tourism: winery
+	
+Node(id=5167052721, #tags=6, name='Chateau Sopot')
+	addr:city: Veles
+	craft: winery
+	name: Chateau Sopot
+	name:mk: Шато Сопот
+	opening_hours: Mo-Su 09:00-22:00
+	phone: +389 78 663 300
+	
+Node(id=9870303417, #tags=6)
+	email: info@monasterywinery.com
+	name:en: monastery winery
+	opening_hours: Mo-Su 08:00-23:00
+	phone: +389 78474656
+	shop: wine
+	website: https://monasterywinery.com
+	
+Way(id=370311640, #tags=3, name='Domaine Lepovo')
+	building: yes
+	craft: winery
+	name: Domaine Lepovo
+	
+Way(id=1221269982, #tags=13, name='Zaharchev Winery and Distillery')
+	addr:city: Кавадарци
+	addr:housenumber: 16
+	addr:postcode: 1430
+	addr:street: Косовска
+	building: yes
+	country: MKD
+	craft: winery
+	name: Zaharchev Winery and Distillery
+	name:mk: Семејна винарија „Захарчев“
+	opening_hours: Mo-Su 08:00-22:00
+	operator: SJ
+	phone: 070 253 103
+	website: https://www.zaharchev.mk/
+	
+Node(id=5901752486, #tags=2)
+	name:en: Kamnik
+	shop: wine
+	
+Node(id=5901753385, #tags=3, name='Сковин')
+	name: Сковин
+	name:en: Skovin
+	shop: wine
+	
+Way(id=476221803, #tags=4, name='Камник')
+	building: yes
+	craft: winery
+	name: Камник
+	tourism: wine_cellar
+	
+Node(id=5901737585, #tags=2)
+	name:en: Tikves
+	shop: wine
+	
+Node(id=6348087929, #tags=1)
+	shop: wine
+	
+Way(id=180716821, #tags=6, name='Попова Кула')
+	amenity: wine_cellar
+	craft: winery
+	int_name: Popova Kula
+	name: Попова Кула
+	shop: wine
+	tasting: yes
+	
+Node(id=5667327121, #tags=11, name='Бовин винарија')
+	addr:postcode: 1440
+	addr:street: Индустриска
+	email: bovin@t.mk
+	name: Бовин винарија
+	name:en: Bovin Winery
+	name:hr: Bovin vinarija
+	name:ru: Бовин
+	opening_hours: Mo-Fr 08:00-16:00
+	phone: 043365322
+	shop: wine
+	website: http://www.bovin.com.mk
+	
