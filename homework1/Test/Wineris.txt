@@ -67,20 +67,6 @@ Way(id=476221803, #tags=4, name='Камник')
 	name: Камник
 	tourism: wine_cellar
 	
-Node(id=7836016476, #tags=12, name='Пицерија Ти Амо')
-	addr:city: Свети Николе
-	addr:housenumber: 2
-	addr:postcode: 2220
-	addr:street: Плоштад Илинден
-	amenity: restaurant
-	cuisine: pizza;coffee_shop;burger;grill;wine;beer
-	name: Пицерија Ти Амо
-	name:en: Picerija Ti Amo
-	opening_hours: Mo-Su 08:00-24:00
-	opening_hours:covid19: restricted
-	phone: 032 444 4446
-	website: https://picerijatiamo.mk/
-	
 Node(id=5901737585, #tags=2)
 	name:en: Tikves
 	shop: wine

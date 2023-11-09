@@ -20,10 +20,20 @@ public class TestApplication implements Sink {
     public static Set<Entity> wineInfo;
 	public static Map<String, String> filterMap;
 
+    public static BufferedWriter writer;
+
+    static {
+        try {
+            writer = new BufferedWriter((new FileWriter("Wineris.txt")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void initialize(Map<String, Object> arg0) {
 		wineInfo = new HashSet<>();
+        System.out.println("Intialized");
 		filterMap = new HashMap<>();
 		//FILL THE FILTER MAP
 		filterMap.put("craft", "winery");
@@ -32,7 +42,8 @@ public class TestApplication implements Sink {
 		filterMap.put("tourism", "winery");
 		filterMap.put("man_made", "winery");
 		filterMap.put("industrial", "winery");
-	}
+
+    }
 
 	public static <T extends Entity> void filterFunction (T node){
 		for (Tag myTag : node.getTags()) {
@@ -44,7 +55,6 @@ public class TestApplication implements Sink {
 //			}
 		}
 	}
-
 
 	@Override
     public void process(EntityContainer entityContainer) {
@@ -70,17 +80,21 @@ public class TestApplication implements Sink {
     @Override
     public void close() {
     }
-
     public static void main(String[] args) throws FileNotFoundException {
         File inputStream = new File("data/macedonia-latest.osm.pbf");
         OsmosisReader reader = new OsmosisReader(inputStream);
         reader.setSink(new TestApplication());
         reader.run();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Wineris.txt"))) {
-            // Iterate over the Set and write each element to the file
+        //Pipe And Filter trial
 
-            for (Entity node : wineInfo.stream().toList()) {
+//        Pipe<String> reading = new Pipe<>();
+//        AddToFileFilter<String> addToFileFilter = new AddToFileFilter<>();
+//        reading.addFilter(addToFileFilter);
+//        reading.runFilters("Wineries.txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Wineris.txt"))) {
+            for (Entity node : TestApplication.wineInfo.stream().toList()) {
                 writer.write(node.toString());
                 writer.newLine();
                 writer.write("\t");
@@ -89,21 +103,41 @@ public class TestApplication implements Sink {
                 }
                 writer.newLine();
             }
-
             System.out.println("Data has been written to the file.");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-//		Map<String, String> testMap = new HashMap<>();
-//		testMap.put("a", "1");
-//		testMap.put("b", "2");
-//		testMap.put("c", "3");
-//		testMap.put("d", "4");
-//
-//		String testString = null;
-//		System.out.println((testString = testMap.get("e"))== null);
-//		System.out.println(testString);
+        Scanner sc = new Scanner(new FileReader("Wineries.txt"));
+
+        //Pipe for extraction of the main info for each relevant entity on the map
+        Pipe<String> mainInfoCSVTransformer = new Pipe<>();
+        EntityTypeRemovalFilter<String> entityTypeRemovalFilter = new EntityTypeRemovalFilter<>();
+        EntityIDCSVTranformation<String> entityIDCSVTranformation = new EntityIDCSVTranformation<>();
+        mainInfoCSVTransformer.addFilter(entityTypeRemovalFilter);
+        mainInfoCSVTransformer.addFilter(entityIDCSVTranformation);
+
+        //Pipe for extracting and adding the relevant tags to a .csv file for each the relevant entities
+        Pipe<String> tagsCSVTransformer = new Pipe<>();
+        NameTagCSVFilter<String> nameTagCSVFilter = new NameTagCSVFilter<>();
+        WebsiteTagCSVFilter<String> websiteTagCSVFilter = new WebsiteTagCSVFilter<>();
+        tagsCSVTransformer.addFilter(nameTagCSVFilter);
+        tagsCSVTransformer.addFilter(websiteTagCSVFilter);
+
+        PrintWriter pw = new PrintWriter("Wineris.csv");
+        while (sc.hasNextLine()){
+            String line = sc.nextLine();
+            if(line.contains("(")){
+                line = mainInfoCSVTransformer.runFilters(line);
+            } else{
+                line = tagsCSVTransformer.runFilters(line);
+            }
+            if(line!=null){
+                pw.write(line);
+            }
+        }
+        pw.flush();
 	}
 
 }
