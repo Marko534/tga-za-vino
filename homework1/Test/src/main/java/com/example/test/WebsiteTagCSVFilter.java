@@ -9,8 +9,8 @@ public class WebsiteTagCSVFilter<T extends String> implements Filter<T>{
             if(pom.length>0){
                 if(pom[0].contains("website")){
                     return (T) (", "+pom[1]);
-                } else if (input.contains(":")) {
-                    return null;
+                } else{
+                    return input;
                 }
             }
         }

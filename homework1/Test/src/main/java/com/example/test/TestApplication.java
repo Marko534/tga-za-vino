@@ -122,8 +122,11 @@ public class TestApplication implements Sink {
         Pipe<String> tagsCSVTransformer = new Pipe<>();
         NameTagCSVFilter<String> nameTagCSVFilter = new NameTagCSVFilter<>();
         WebsiteTagCSVFilter<String> websiteTagCSVFilter = new WebsiteTagCSVFilter<>();
+        PhoneTagCSVFilter<String> phoneTagCSVFilter = new PhoneTagCSVFilter<>();
         tagsCSVTransformer.addFilter(nameTagCSVFilter);
         tagsCSVTransformer.addFilter(websiteTagCSVFilter);
+        tagsCSVTransformer.addFilter(phoneTagCSVFilter);
+
 
         PrintWriter pw = new PrintWriter("Wineris.csv");
         while (sc.hasNextLine()){
