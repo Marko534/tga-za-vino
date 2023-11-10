@@ -1,4 +1,6 @@
-package com.example.test;
+package com.example.test.PipeAndFilterClasses;
+
+import com.example.test.PipeAndFilterClasses.Filter;
 
 import java.util.ArrayList;
 import java.util.List;

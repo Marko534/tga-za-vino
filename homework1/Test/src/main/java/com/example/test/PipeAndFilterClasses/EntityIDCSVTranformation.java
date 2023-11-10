@@ -1,7 +1,7 @@
-package com.example.test;
+package com.example.test.PipeAndFilterClasses;
 
 @SuppressWarnings({"raw", "unchecked"})
-public class EntityIDCSVTranformation<T extends String> implements Filter<T>{
+public class EntityIDCSVTranformation<T extends String> implements Filter<T> {
     @Override
     public T execute(T input) {
         String [] pom = input.split(", ");
