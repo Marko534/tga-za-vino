@@ -3,6 +3,10 @@ Way(id=533757101, #tags=3, name='Vinarija Stobi')
 	name: Vinarija Stobi
 	website: https://www.stobiwinery.mk/
 	
+Node(id=5901737585, #tags=2)
+	name:en: Tikves
+	shop: wine
+	
 Way(id=180725215, #tags=11, name='Винарија Грков')
 	amenity: wine_cellar
 	attraction: winery
@@ -56,24 +60,6 @@ Node(id=5901752486, #tags=2)
 	name:en: Kamnik
 	shop: wine
 	
-Node(id=5901753385, #tags=3, name='Сковин')
-	name: Сковин
-	name:en: Skovin
-	shop: wine
-	
-Way(id=476221803, #tags=4, name='Камник')
-	building: yes
-	craft: winery
-	name: Камник
-	tourism: wine_cellar
-	
-Node(id=5901737585, #tags=2)
-	name:en: Tikves
-	shop: wine
-	
-Node(id=6348087929, #tags=1)
-	shop: wine
-	
 Way(id=180716821, #tags=6, name='Попова Кула')
 	amenity: wine_cellar
 	craft: winery
@@ -94,4 +80,15 @@ Node(id=5667327121, #tags=11, name='Бовин винарија')
 	phone: 043365322
 	shop: wine
 	website: http://www.bovin.com.mk
+	
+Node(id=5901753385, #tags=3, name='Сковин')
+	name: Сковин
+	name:en: Skovin
+	shop: wine
+	
+Way(id=476221803, #tags=4, name='Камник')
+	building: yes
+	craft: winery
+	name: Камник
+	tourism: wine_cellar
 	

@@ -7,28 +7,17 @@ import java.io.*;
 import java.util.*;
 
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
-import org.openstreetmap.osmosis.core.container.v0_6.NodeContainer;
-import org.openstreetmap.osmosis.core.container.v0_6.RelationContainer;
-import org.openstreetmap.osmosis.core.container.v0_6.WayContainer;
 import org.openstreetmap.osmosis.core.task.v0_6.Sink;
 
 import crosby.binary.osmosis.OsmosisReader;
-import org.yaml.snakeyaml.error.MarkedYAMLException;
 
 @SpringBootApplication
 public class TestApplication implements Sink {
     public static Set<Entity> wineInfo;
 	public static Map<String, String> filterMap;
-
     public static BufferedWriter writer;
+    public static Pipe<EntityContainer> winerySelectionPipe;
 
-    static {
-        try {
-            writer = new BufferedWriter((new FileWriter("Wineris.txt")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public void initialize(Map<String, Object> arg0) {
@@ -45,32 +34,21 @@ public class TestApplication implements Sink {
 
     }
 
-	public static <T extends Entity> void filterFunction (T node){
-		for (Tag myTag : node.getTags()) {
-//            if (myTag.getValue().contains(""))
-//			if (filterMap.containsKey(myTag.getKey()) ){
-				if (filterMap.containsValue(myTag.getValue())){
-                    wineInfo.add(node);
-				}
-//			}
-		}
-	}
+//	public static <T extends Entity> void filterFunction (T node){
+//		for (Tag myTag : node.getTags()) {
+////            if (myTag.getValue().contains(""))
+////			if (filterMap.containsKey(myTag.getKey()) ){
+//				if (filterMap.containsValue(myTag.getValue())){
+//                    wineInfo.add(node);
+//				}
+////			}
+//		}
+//	}
 
 	@Override
     public void process(EntityContainer entityContainer) {
-        if (entityContainer instanceof NodeContainer) {
-            // Nothing to do here
-			Node myNode = ((NodeContainer) entityContainer).getEntity();
-			filterFunction(myNode);
-        } else if (entityContainer instanceof WayContainer) {
-			Way myWay = ((WayContainer) entityContainer).getEntity();
-			filterFunction(myWay);
-		} else if (entityContainer instanceof RelationContainer) {
-			Relation myRelation = ((RelationContainer) entityContainer).getEntity();
-			filterFunction(myRelation);
-		} else {
-            System.out.println("Unknown Entity!");
-        }
+        Optional<EntityContainer> passingCriteriaItem = Optional.ofNullable(winerySelectionPipe.runFilters(entityContainer));
+        passingCriteriaItem.ifPresent(container -> wineInfo.add(container.getEntity()));
     }
 
     @Override
@@ -82,9 +60,12 @@ public class TestApplication implements Sink {
     }
     public static void main(String[] args) throws FileNotFoundException {
         File inputStream = new File("data/macedonia-latest.osm.pbf");
-        OsmosisReader reader = new OsmosisReader(inputStream);
+        OsmosisReader reader = new OsmosisReader(inputStream); // reader for the OSM XML format
+        winerySelectionPipe = new Pipe<>();
+        winerySelectionPipe.addFilter(new WineryEntitySelectionFilter<>());
+        winerySelectionPipe.addFilter(new NoNameEntitiesRemovalFilter<>());
         reader.setSink(new TestApplication());
-        reader.run();
+        reader.run(); // calls the process method in a multi-thread style, then the process method uses the winerySelectionPipe in order to filter all non-winery nodes
 
         //Pipe And Filter trial
 
@@ -109,7 +90,7 @@ public class TestApplication implements Sink {
             throw new RuntimeException(e);
         }
 
-        Scanner sc = new Scanner(new FileReader("Wineries.txt"));
+        Scanner sc = new Scanner(new FileReader("Wineris.txt"));
 
         //Pipe for extraction of the main info for each relevant entity on the map
         Pipe<String> mainInfoCSVTransformer = new Pipe<>();
