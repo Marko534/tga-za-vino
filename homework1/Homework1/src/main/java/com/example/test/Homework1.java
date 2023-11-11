@@ -38,11 +38,11 @@ public class Homework1 implements Sink {
 
     @Override
     public void complete() {
-    }
+    } // ??
 
     @Override
     public void close() {
-    }
+    } // ??
 
     public static void main(String[] args) {
         File inputStream = new File("data/macedonia-latest.osm.pbf"); //the OSM data for all nodes and ways in Macedonia
