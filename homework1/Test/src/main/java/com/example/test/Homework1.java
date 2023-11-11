@@ -42,35 +42,24 @@ public class Homework1 implements Sink {
     public void close() {
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File inputStream = new File("data/macedonia-latest.osm.pbf"); //the OSM data for all nodes and way in Macedonia
+    public static void main(String[] args) {
+        File inputStream = new File("data/macedonia-latest.osm.pbf"); //the OSM data for all nodes and ways in Macedonia
         OsmosisReader reader = new OsmosisReader(inputStream); // reader for the OSM XML format
+        //IMPORTANT: winerySelectionPipe is run on all possible entities in the .osm file, in the process(EntityContainer e) method above
         winerySelectionPipe = new Pipe<EntityContainer>(); // this Pipe serves for removing all entities present in the OSM file that are not wineries, or wineries that have no name, and for the other wineries it serves for removing multiple name tags
         winerySelectionPipe.addFilter(new WineryEntitySelectionFilter<>());
         winerySelectionPipe.addFilter(new NoNameEntitiesRemovalFilter<>());
         winerySelectionPipe.addFilter(new MultipleNamesRemovalFilter<>());
+        winerySelectionPipe.addFilter(new RedundantTagsRemovalFilter<>());
+        winerySelectionPipe.addFilter(new EntityToStringRepresentationFilter<>());
         reader.setSink(new Homework1());
-        reader.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present
-
-        //Pipe for extraction of the main info for each relevant entity on the map, previously filtered in winerySelectionPipe, and adding them in .csv file
-        Pipe<String> mainInfoCSVTransformer = new Pipe<>();
-        mainInfoCSVTransformer.addFilter(new BracketsRemovalFilter<>());
-        mainInfoCSVTransformer.addFilter(new EntityIDCSVTranformation<>());
-
-        //Pipe for extracting and adding the relevant tags to a .csv file for each of the relevant entities
-        Pipe<String> tagsCSVTransformer = new Pipe<>();
-        tagsCSVTransformer.addFilter(new NameTagCSVFilter<>());
-        tagsCSVTransformer.addFilter(new WebsiteTagCSVFilter<>());
-        tagsCSVTransformer.addFilter(new PhoneTagCSVFilter<>());
+        reader.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Wineris.csv"))) {
             for (Entity node : Homework1.wineInfo.stream().toList()) {
-                writer.write(mainInfoCSVTransformer.runFilters(node.toString()));
-                for(Tag t : node.getTags()){
-                    String tag = tagsCSVTransformer.runFilters(t.getKey() + ": "+t.getValue());
-                    if(tag!=null){
-                        writer.write(tag);
-                    }
+                Optional<Tag> csvFormat = node.getTags().stream().filter(t -> t.getKey().equals("ToString")).findFirst();
+                if(csvFormat.isPresent()){
+                    writer.write(csvFormat.get().getValue());
                 }
             }
             System.out.println("Data has been written to the \"Wineris.csv\" file.");
