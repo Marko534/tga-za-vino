@@ -11,7 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "location")
 @Getter @Setter
 @RequiredArgsConstructor
 public class Location {
@@ -20,16 +20,18 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "latitude", nullable = false)
+    @Column(name = "lat", nullable = false)
     private Double latitude;
 
-    @Column(name = "longitude", nullable = false)
+    @Column(name = "long", nullable = false)
     private Double longitude;
 
     @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date created_at;
 
     @LastModifiedDate
+    @Column(name = "updated_at")
    private Date updated_at;
 
     @ManyToOne

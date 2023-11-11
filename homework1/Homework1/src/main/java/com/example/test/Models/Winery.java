@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "wineries")
+@Table(name = "winery")
 @Getter @Setter @RequiredArgsConstructor
 
 public class Winery {
@@ -26,10 +26,10 @@ public class Winery {
     @Column(name = "map_id", nullable = true)
     private String map_id;
 
-    @Column(name = "webiste", nullable = true)
+    @Column(name = "web", nullable = true)
     private String website;
 
-    @Column(name ="phone_number", nullable = true)
+    @Column(name ="phone", nullable = true)
     private String phone;
 
     @CreatedDate

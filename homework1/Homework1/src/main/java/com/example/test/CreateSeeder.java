@@ -58,6 +58,7 @@ public class CreateSeeder {
             List<String[]> data = parseCsv();
             StringBuilder sql = new StringBuilder();
 
+
             for(String[] row : data) {
                 String type = row[0];
                 String id = row[1];
@@ -66,14 +67,28 @@ public class CreateSeeder {
 
                 if(website.matches("")) {
                     website = null;
+                } else {
+                    website = "'" + website + "'";
                 }
+
                 String phone = row[4];
                 if(phone.matches("")) {
                     phone = null;
+                } else {
+                    phone = "'" + phone + "'";
                 }
 
                 if(type.equals("Node") || type.equals(("Way"))) {
-                    sql.append(String.format("INSERT INTO wineries (id, created_at, map_id, name, phone_number, webiste, updated_at) VALUES('%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s');\n", UUID.randomUUID().toString(), new Date().toGMTString(), id, name, phone == null ? null : "'" + phone + "'", website == null ? null : "'" + website + "'", new Date().toGMTString()));
+                    sql.append(String.format("""
+                            INSERT INTO public.winery (id, created_at, map_id, name, phone, web, updated_at)
+                            SELECT '%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
+                            WHERE NOT EXISTS(
+                                SELECT '%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
+                                FROM public.winery
+                                WHERE id = '%1$s'
+                            );\n                            
+                            """,UUID.randomUUID().toString(), new Date().toGMTString(), id, name, phone, website, new Date().toGMTString()));
+//                    sql.append(String.format("INSERT INTO winery (id, created_at, map_id, name, phone, web, updated_at) VALUES('%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s');\n", UUID.randomUUID().toString(), new Date().toGMTString(), id, name, phone, website, new Date().toGMTString()));
                 }
             }
 
