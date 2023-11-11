@@ -9,6 +9,8 @@ import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
 import org.openstreetmap.osmosis.core.task.v0_6.Sink;
 import crosby.binary.osmosis.OsmosisReader;
 
+import static java.util.spi.ToolProvider.findFirst;
+
 @SpringBootApplication
 public class Homework1 implements Sink {
     public static Set<Entity> wineInfo;
@@ -56,11 +58,31 @@ public class Homework1 implements Sink {
         reader.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Wineris.csv"))) {
-            for (Entity node : Homework1.wineInfo.stream().toList()) {
-                Optional<Tag> csvFormat = node.getTags().stream().filter(t -> t.getKey().equals("ToString")).findFirst();
-                if(csvFormat.isPresent()){
-                    writer.write(csvFormat.get().getValue());
+            writer.write("Type,Id,Name,Web,Phone\n");
+            for (Entity node : wineInfo) {
+               // System.out.println(node.getType());
+                writer.write(node.getType() + ",");
+                writer.write(node.getId() + ",");
+
+                Optional<Tag> name = node.getTags().stream().filter(n -> n.getKey().contains("name")).findFirst();
+                if (name.isPresent()){
+                    writer.write(String.valueOf(name.get().getValue()) + ",");
+                }else {
+                    writer.write(",");
                 }
+
+                Optional<Tag> web = node.getTags().stream().filter(n -> n.getKey().contains("website")).findFirst();
+                if (web.isPresent()){
+                    writer.write(String.valueOf(web.get().getValue()) + ",");
+                }else {
+                    writer.write(",");
+                }
+
+                Optional<Tag> phone = node.getTags().stream().filter(n -> n.getKey().contains("phone")).findFirst();
+                if (phone.isPresent()){
+                    writer.write(String.valueOf(phone.get().getValue()));
+                }
+                writer.newLine();
             }
             System.out.println("Data has been written to the \"Wineris.csv\" file.");
         } catch (IOException e) {
