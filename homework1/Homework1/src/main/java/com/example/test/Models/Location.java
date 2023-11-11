@@ -30,7 +30,11 @@ public class Location {
     private Date created_at;
 
     @LastModifiedDate
-    private Date updated_at;
+   private Date updated_at;
+
+    @ManyToOne
+    @JoinColumn(name = "winery_id", nullable = true)
+    private Winery winery;
 
     @Override
     public String toString() {
