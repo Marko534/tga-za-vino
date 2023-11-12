@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static java.util.spi.ToolProvider.findFirst;
 
-@SpringBootApplication()
+
 public class Homework1 implements Sink {
     public static Set<Entity> wineInfo;
 	public static Map<String, String> filterMap;
