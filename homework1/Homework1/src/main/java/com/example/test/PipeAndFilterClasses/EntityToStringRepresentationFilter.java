@@ -21,6 +21,7 @@ public class EntityToStringRepresentationFilter<T extends EntityContainer> imple
             } else{
                 sb.append(",");
             }
+
             Optional<Tag> website = tagList.stream().filter(t -> t.getKey().contains("website")).findFirst();
             website.ifPresent(tag -> sb.append(String.format("%s,", tag.getValue())));
             if(website.isPresent()){
@@ -28,6 +29,7 @@ public class EntityToStringRepresentationFilter<T extends EntityContainer> imple
             } else{
                 sb.append(",");
             }
+
             Optional<Tag> phone = tagList.stream().filter(t -> t.getKey().contains("phone")).findFirst();
             if(phone.isPresent()){
                 String [] numGruoups = phone.get().getValue().split("\\s+");
