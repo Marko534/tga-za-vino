@@ -23,7 +23,7 @@ public class EntityToStringRepresentationFilter<T extends EntityContainer> imple
             }
 
             Optional<Tag> website = tagList.stream().filter(t -> t.getKey().contains("website")).findFirst();
-            website.ifPresent(tag -> sb.append(String.format("%s,", tag.getValue())));
+            // website.ifPresent(tag -> sb.append(String.format("%s,", tag.getValue())));
             if(website.isPresent()){
                 sb.append(String.format("%s,", website.get().getValue()));
             } else{
