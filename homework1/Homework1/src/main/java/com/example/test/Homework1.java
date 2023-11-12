@@ -7,6 +7,7 @@ import java.util.*;
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
 import org.openstreetmap.osmosis.core.task.v0_6.Sink;
 import crosby.binary.osmosis.OsmosisReader;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static java.util.spi.ToolProvider.findFirst;
 
@@ -37,21 +38,20 @@ public class Homework1 implements Sink {
 
     @Override
     public void complete() {
-    } // ??
+    }
 
     @Override
     public void close() {
-    } // ??
+    }
 
     public void generateCsv() {
-
 //    public static void main(String[] args) {
         File inputStream = new File("data/macedonia-latest.osm.pbf"); //the OSM data for all nodes and ways in Macedonia
         OsmosisReader reader = new OsmosisReader(inputStream); // reader for the OSM XML format
         //IMPORTANT: winerySelectionPipe is run on all possible entities in the .osm file, in the process(EntityContainer e) method above
 
 
-        winerySelectionPipe = new Pipe<EntityContainer>(); // this Pipe serves for removing all entities present in the OSM file that are not wineries, or wineries that have no name, and for the other wineries it serves for removing multiple name tags
+        winerySelectionPipe = new Pipe<EntityContainer>(); // this Pipe serves for removing all entities present in the OSM file that are not wineries, or wineries that have no name, and for the other wineries it serves for removing multiple name tags, and anything else
 
 
         winerySelectionPipe.addFilter(new WineryEntitySelectionFilter<>());
@@ -65,29 +65,10 @@ public class Homework1 implements Sink {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("wineries.csv"))) {
             writer.write("Type,Id,Name,Web,Phone\n");
             for (Entity node : wineInfo) {
-               // System.out.println(node.getType());
-                writer.write(node.getType() + ",");
-                writer.write(node.getId() + ",");
-
-                Optional<Tag> name = node.getTags().stream().filter(n -> n.getKey().contains("name")).findFirst();
-                if (name.isPresent()){
-                    writer.write(String.valueOf(name.get().getValue()) + ",");
-                }else {
-                    writer.write(",");
+                Optional<Tag> entity = node.getTags().stream().filter(t->t.getKey().contains("ToString")).findFirst();
+                if(entity.isPresent()){
+                    writer.write(entity.get().getValue());
                 }
-
-                Optional<Tag> web = node.getTags().stream().filter(n -> n.getKey().contains("website")).findFirst();
-                if (web.isPresent()){
-                    writer.write(String.valueOf(web.get().getValue()) + ",");
-                }else {
-                    writer.write(",");
-                }
-
-                Optional<Tag> phone = node.getTags().stream().filter(n -> n.getKey().contains("phone")).findFirst();
-                if (phone.isPresent()){
-                    writer.write(String.valueOf(phone.get().getValue()));
-                }
-                writer.newLine();
             }
             System.out.println("Data has been written to the \"wineries.csv\" file.");
         } catch (IOException e) {

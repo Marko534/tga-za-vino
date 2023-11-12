@@ -14,12 +14,25 @@ public class EntityToStringRepresentationFilter<T extends EntityContainer> imple
         if(node!=null){
             List<Tag> tagList = node.getEntity().getTags().stream().toList();
             StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%s, %s", node.getEntity().getType().toString(), node.getEntity().getId()));
+            sb.append(String.format("%s,%s,", node.getEntity().getType().toString(), node.getEntity().getId()));
             Optional<Tag> name = tagList.stream().filter(t -> t.getKey().contains("name")).findFirst();
-            name.ifPresent(tag -> sb.append(String.format(", %s", tag.getValue())));
+            if(name.isPresent()){
+                sb.append(String.format("%s,", name.get().getValue()));
+            } else{
+                sb.append(",");
+            }
+
+            Optional<Tag> website = tagList.stream().filter(t -> t.getKey().contains("website")).findFirst();
+            website.ifPresent(tag -> sb.append(String.format("%s,", tag.getValue())));
+            if(website.isPresent()){
+                sb.append(String.format("%s,", website.get().getValue()));
+            } else{
+                sb.append(",");
+            }
+
             Optional<Tag> phone = tagList.stream().filter(t -> t.getKey().contains("phone")).findFirst();
-            phone.ifPresent(tag -> {
-                String [] numGruoups = tag.getValue().split("\\s+");
+            if(phone.isPresent()){
+                String [] numGruoups = phone.get().getValue().split("\\s+");
                 if(numGruoups[0].startsWith("0")){
                     numGruoups[0] = numGruoups[0].replaceFirst("0", "+389");
                 }
@@ -27,10 +40,8 @@ public class EntityToStringRepresentationFilter<T extends EntityContainer> imple
                 for(String s: numGruoups){
                     phoneSb.append(s);
                 }
-                sb.append(", ").append(phoneSb.toString());
-            });
-            Optional<Tag> website = tagList.stream().filter(t -> t.getKey().contains("website")).findFirst();
-            website.ifPresent(tag -> sb.append(String.format(", %s", tag.getValue())));
+                sb.append(phoneSb.toString());
+            }
             sb.append("\n");
             node.getEntity().getTags().add(new Tag("ToString", sb.toString()));
             return node;
