@@ -10,3 +10,5 @@
 |211572		   |	Filip	   |Todorov    |
 
 Wineries in Macedonia. 
+
+<b>Note:</b> The original data that we used is located in path: homework1/Homework1/data/macedonia-latest.osm.pbf
