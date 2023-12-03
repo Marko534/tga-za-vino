@@ -1,0 +1,50 @@
+package com.example.test.Models;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.util.Date;
+import java.util.UUID;
+
+@Entity
+@Table(name = "wine")
+@Getter @Setter
+@RequiredArgsConstructor
+public class Wine {
+
+    //Winery,Name,Price,Image-Link
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "price", nullable = true)
+    private String price;
+
+    @Column(name = "image_link", nullable = true)
+    private String image_link;
+
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date created_at;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private Date  updated_at;
+
+    @ManyToOne
+    @JoinColumn(name = "winery_id", nullable = false)
+    private Winery associated_winery;
+
+    @Override
+    public String toString() {
+        return "Wine [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image_link;
+    }
+}
