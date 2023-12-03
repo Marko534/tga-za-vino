@@ -9,7 +9,7 @@ import org.openstreetmap.osmosis.core.task.v0_6.Sink;
 import crosby.binary.osmosis.OsmosisReader;
 
 
-public class Homework2 implements Sink {
+public class Homework1 implements Sink {
     public static Set<Entity> wineInfo;
 	public static Map<String, String> filterMap;
     public static Pipe<EntityContainer> winerySelectionPipe;
@@ -56,7 +56,7 @@ public class Homework2 implements Sink {
         winerySelectionPipe.addFilter(new MultipleNamesRemovalFilter<>());
         winerySelectionPipe.addFilter(new RedundantTagsRemovalFilter<>());
         winerySelectionPipe.addFilter(new EntityToStringRepresentationFilter<>());
-        reader.setSink(new Homework2());
+        reader.setSink(new Homework1());
         reader.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("wineries.csv"))) {

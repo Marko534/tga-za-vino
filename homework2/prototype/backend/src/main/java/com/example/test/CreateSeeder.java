@@ -36,7 +36,7 @@ public class CreateSeeder {
 
         if(!csvExists) {
             //Pipe & Filter
-            Homework2 csvGenerator =  new Homework2();
+            Homework1 csvGenerator =  new Homework1();
 
             csvGenerator.generateCsv();
         }

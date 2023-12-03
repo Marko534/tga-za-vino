@@ -1,6 +1,6 @@
 package com.example.test.PipeAndFilterClasses;
 
-import com.example.test.Homework2;
+import com.example.test.Homework1;
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
 
@@ -8,7 +8,7 @@ public class WineryEntitySelectionFilter<T extends EntityContainer> implements F
     @Override
     public T execute(T node) {
         for (Tag myTag : node.getEntity().getTags()) {
-            if (Homework2.filterMap.containsValue(myTag.getValue())){
+            if (Homework1.filterMap.containsValue(myTag.getValue())){
                 return node;
             }
         }
