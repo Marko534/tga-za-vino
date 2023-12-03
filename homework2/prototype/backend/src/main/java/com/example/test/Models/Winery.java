@@ -1,9 +1,8 @@
 package com.example.test.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -13,8 +12,9 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "winery")
-@Getter @Setter @RequiredArgsConstructor
-
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Winery {
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
@@ -40,12 +40,23 @@ public class Winery {
     @Column(name = "updated_at")
     private Date updated_at;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "winery")
     private List<Location> locations;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "associated_winery")
     private List<Wine> wines;
+
+    @JsonManagedReference
+    public List<Wine> getWines() {
+        return wines;
+    }
+
+    @JsonManagedReference
+    public List<Location> getLocations() {
+        return locations;
+    }
 
     @Override
     public String toString() {

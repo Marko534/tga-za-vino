@@ -1,9 +1,9 @@
 package com.example.test.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -13,7 +13,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "wine")
 @Getter @Setter
-@RequiredArgsConstructor
+
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Wine {
 
     //Winery,Name,Price,Image-Link
@@ -35,12 +38,14 @@ public class Wine {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date created_at;
 
+
     @LastModifiedDate
     @Column(name = "updated_at")
     private Date  updated_at;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "winery_id", nullable = false)
+    @JoinColumn(name = "winery_id")
     private Winery associated_winery;
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface WineryRepository  extends CrudRepository<Winery, String> {
+public interface WineryRepository  extends CrudRepository<Winery, UUID> {
 
     List<Winery> findWineryByName(String name);
 }
