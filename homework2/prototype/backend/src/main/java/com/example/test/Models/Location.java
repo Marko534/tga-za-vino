@@ -3,6 +3,7 @@ package com.example.test.Models;
 import java.util.Date;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class Location {
     @Column(name = "updated_at")
    private Date updated_at;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "winery_id", nullable = true)
     private Winery winery;

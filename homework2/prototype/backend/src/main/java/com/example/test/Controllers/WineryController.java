@@ -25,12 +25,12 @@ public class WineryController {
     }
 
     @GetMapping("/wineries/{id}")
-    ResponseEntity<Optional<Winery>> getByWineryId(@PathVariable String id) {
+    ResponseEntity<Optional<Winery>> getByWineryId(@PathVariable UUID id) {
         return new ResponseEntity<>(wineryService.findById(id), HttpStatus.OK);
     }
 
     @GetMapping("/wines/{id}")
-    ResponseEntity<Optional<Wine>> getByWineId(@PathVariable String id) {
+    ResponseEntity<Optional<Wine>> getByWineId(@PathVariable UUID id) {
         return new ResponseEntity<>(wineService.findById(id), HttpStatus.OK);
     }
 

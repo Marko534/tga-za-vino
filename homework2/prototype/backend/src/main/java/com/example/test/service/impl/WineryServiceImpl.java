@@ -45,7 +45,7 @@ public class WineryServiceImpl implements WineryService {
     }
 
     @Override
-    public Optional<Winery> findById(String id) {
+    public Optional<Winery> findById(UUID id) {
         return this.wineryRepository.findById(id);
     }
 }

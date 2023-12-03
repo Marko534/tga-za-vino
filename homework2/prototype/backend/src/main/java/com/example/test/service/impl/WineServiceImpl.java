@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +46,7 @@ public class WineServiceImpl implements WineService {
     }
 
     @Override
-    public Optional<Wine> findById(String id) {
+    public Optional<Wine> findById(UUID id) {
         return this.wineRepository.findById(id);
     }
 

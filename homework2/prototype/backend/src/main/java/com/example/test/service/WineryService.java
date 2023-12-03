@@ -11,7 +11,7 @@ public interface WineryService {
 
     List <Winery> findWineriesByKeyWord(String keyword);
     Optional<Winery> findWineryByName(String name);
-    Optional<Winery> findById(String id);
+    Optional<Winery> findById(UUID id);
 
 
 
