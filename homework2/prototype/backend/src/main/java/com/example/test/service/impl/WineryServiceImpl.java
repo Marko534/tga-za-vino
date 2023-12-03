@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,5 +42,10 @@ public class WineryServiceImpl implements WineryService {
                 .stream()
                 .filter(w->w.getName().equals(name))
                 .findFirst();
+    }
+
+    @Override
+    public Optional<Winery> findById(String id) {
+        return this.wineryRepository.findById(id);
     }
 }

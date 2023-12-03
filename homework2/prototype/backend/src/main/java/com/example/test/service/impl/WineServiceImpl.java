@@ -44,4 +44,9 @@ public class WineServiceImpl implements WineService {
                 .findFirst();
     }
 
+    @Override
+    public Optional<Wine> findById(String id) {
+        return this.wineRepository.findById(id);
+    }
+
 }

@@ -11,4 +11,5 @@ public interface WineService {
 
     List<Wine> findWineByKeyWord(String keyword);
     Optional<Wine> findWineByName(String name);
+    Optional<Wine> findById(String id);
 }
