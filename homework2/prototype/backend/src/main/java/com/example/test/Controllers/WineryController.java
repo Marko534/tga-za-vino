@@ -1,24 +1,24 @@
 package com.example.test.Controllers;
 
 import com.example.test.Models.Winery;
-import com.example.test.Repositories.WineryRepository;
+import com.example.test.service.WineryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class WineryController {
-    private final WineryRepository repository;
+    private final WineryService service;
 
-    WineryController(WineryRepository repository) {
-        this.repository = repository;
+    WineryController(WineryService service) {
+        this.service = service;
     }
 
     @GetMapping("/wineries/{name}")
-    List<Winery> getByName(@PathVariable String name) {
-        return repository.findWineryByName(name);
+    Optional<Winery> getByName(@PathVariable String name) {
+        return service.findWineryByName(name);
     }
 
 }
