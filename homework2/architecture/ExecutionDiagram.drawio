@@ -1,0 +1,58 @@
+<mxfile host="Electron" modified="2023-12-03T18:43:12.263Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="79mcwRu0R2hmoqmCpJUl" version="22.1.2" type="device">
+  <diagram name="Page-1" id="YhvAK_jHwdWoLqNBL8As">
+    <mxGraphModel dx="714" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-14" value="http" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="d6oNx36nV5IwPCvtQQwX-1" target="d6oNx36nV5IwPCvtQQwX-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-30" value="http" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="d6oNx36nV5IwPCvtQQwX-1" target="d6oNx36nV5IwPCvtQQwX-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="140" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-2" value="AppUi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="155" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="d6oNx36nV5IwPCvtQQwX-9" target="d6oNx36nV5IwPCvtQQwX-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="280" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-8" value="Calculate the closest" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="295" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-15" value="Search function" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="435" y="295" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="420" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-17" value="Wine Database" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="435" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="d6oNx36nV5IwPCvtQQwX-22" target="d6oNx36nV5IwPCvtQQwX-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="560" width="320" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-19" value="Pipe and filters" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="585" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-21" value="Data from openStreatmap" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="575" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-28" value="Display On map" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="155" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d6oNx36nV5IwPCvtQQwX-29" value="MapAPI" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="295" width="100" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
