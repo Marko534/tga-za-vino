@@ -40,7 +40,7 @@ public class Wine {
     private Date  updated_at;
 
     @ManyToOne
-    @JoinColumn(name = "winery_id", nullable = false)
+    @JoinColumn(name = "winery_id")
     private Winery associated_winery;
 
     @Override
