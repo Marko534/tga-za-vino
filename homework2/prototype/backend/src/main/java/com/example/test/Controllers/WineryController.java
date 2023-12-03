@@ -24,7 +24,7 @@ public class WineryController {
         this.wineService = wineService;
     }
 
-    @GetMapping("/wineries/{id}")
+        @GetMapping("/wineries/{id}")
     ResponseEntity<Optional<Winery>> getByWineryId(@PathVariable UUID id) {
         return new ResponseEntity<>(wineryService.findById(id), HttpStatus.OK);
     }
