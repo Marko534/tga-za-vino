@@ -1,8 +1,11 @@
 import type {Wine} from "../types/wine.ts";
+import { serverApi } from "../constants/server.ts";
 
 type FetchWineParams = {
     wineId: string | undefined;
 }
+
+export type FetchWineResponse = Wine;
 
 export async function fetchWine({ wineId }: FetchWineParams) {
     if(!wineId) {
@@ -13,23 +16,23 @@ export async function fetchWine({ wineId }: FetchWineParams) {
             }
         })
     }
-    const response = await fetch(`http://localhost:3000/wines/${wineId}`, {
+    const response = await fetch(`${serverApi}/wines/${wineId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     })
-    return await response.json() as Promise<{ wine: Wine }>
+    return await response.json() as Promise<FetchWineResponse>
 }
 
 export async function getRandomWineId() {
-    const response = await fetch(`http://localhost:3000/wines/random`, {
+    const response = await fetch(`${serverApi}/wines/random`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     })
-    return await response.json() as Promise<{ wineId: string }>
+    return await response.json() as Promise<FetchWineResponse>
 }
 
 

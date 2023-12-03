@@ -1,19 +1,11 @@
-// import { useLoaderData } from "react-router-dom";
-import { Winery } from "../types/ winery.ts";
-import WineryComponent from "../components/winery-component.tsx";
 
-const winery: Winery = {
-    name: "Example Winery",
-    created_at: new Date().toDateString(),
-    updated_at: new Date().toDateString(),
-    id: "1",
-    map_id: "111",
-    web: "https://example.com",
-    phone: "123456789",
-};
+import WineryComponent from "../components/winery-component.tsx";
+import { FetchWineryResponse } from "../repository/winery-repository.ts";
+import { useLoaderData } from "react-router-dom";
+
 
 const SingleWinery = () => {
-  // const {} = useLoaderData();
+  const winery = useLoaderData() as FetchWineryResponse;
   return (
     <WineryComponent winery={winery} />
   )

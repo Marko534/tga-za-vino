@@ -11,6 +11,8 @@ import "leaflet/dist/leaflet.css"
 import SingleWine from "./pages/SingleWine.tsx";
 import {SearchResponse} from "./repository/search.ts";
 import SingleWinery from "./pages/SingleWinery.tsx";
+import { fetchWinery } from "./repository/winery-repository.ts";
+import { fetchWine } from "./repository/wine-repository.ts";
 
 
 const router = createBrowserRouter([
@@ -55,17 +57,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/:wineId",
-                // loader: async ({ params }) => {
-                //     return fetchWine({ wineId: params.wineId})
-                // },
+                loader: async ({ params }) => {
+                    return fetchWine({ wineId: params.wineId})
+                },
 
                 element: <SingleWine />
             },
             {
                 path: "/winery/:wineryId",
-                // loader: async ({ params }) => {
-                //     return fetchWinery({ wineryId: params.wineryId})
-                // },
+                loader: async ({ params }) => {
+                    return fetchWinery({ wineryId: params.wineryId})
+                },
                 element: <SingleWinery />
             }
         ]

@@ -1,5 +1,6 @@
 import {Wine} from "../types/wine.ts";
 import {Winery} from "../types/ winery.ts";
+import { serverApi } from "../constants/server.ts";
 
 type SearchRequestParams = {
     query: string;
@@ -11,8 +12,8 @@ export type SearchResponse = {
 }
 
 export async function search({ query }: SearchRequestParams) {
-    const response = await fetch(`http://localhost:3000/wines/search?q=${query}`, {
-        method: "POST",
+    const response = await fetch(`${serverApi}/search?query=${query}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
