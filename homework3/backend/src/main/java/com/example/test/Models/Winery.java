@@ -23,6 +23,9 @@ public class Winery {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "location_type", nullable = true)
+    private String location_type;
+
     @Column(name = "map_id", nullable = true)
     private String map_id;
 

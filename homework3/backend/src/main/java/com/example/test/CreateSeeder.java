@@ -89,14 +89,14 @@ public class CreateSeeder {
                 if(type.equals("Node") || type.equals(("Way"))) {
                     wineriesIds.putIfAbsent(name, wine_id);
                     sql.append(String.format("""
-                            INSERT INTO public.winery (id, created_at, map_id, name, phone, web, updated_at)
-                            SELECT '%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
+                            INSERT INTO public.winery (id, created_at, location_type ,map_id, name, phone, web, updated_at)
+                            SELECT '%1$s', '%2$s', '%8$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
                             WHERE NOT EXISTS(
-                                SELECT '%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
+                                SELECT '%1$s', '%2$s', '%8$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s'
                                 FROM public.winery
                                 WHERE id = '%1$s'
                             );\n                            
-                            """,wine_id.toString(), new Date().toGMTString(), id, name, phone, website, new Date().toGMTString()));
+                            """,wine_id.toString(), new Date().toString(), id, name, phone, website, new Date().toString(), type));
 //                    sql.append(String.format("INSERT INTO winery (id, created_at, map_id, name, phone, web, updated_at) VALUES('%1$s', '%2$s', '%3$s', '%4$s', %5$s, %6$s, '%7$s');\n", UUID.randomUUID().toString(), new Date().toGMTString(), id, name, phone, website, new Date().toGMTString()));
                 }
             }
