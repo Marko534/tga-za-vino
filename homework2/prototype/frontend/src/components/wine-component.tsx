@@ -31,12 +31,12 @@ const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
             </div>
             {mapOpen && (
               <div className={"w-full h-[350px]"}>
-                  <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                  <MapContainer center={[41.18519495926073, 20.87718900422315]} zoom={13} scrollWheelZoom={false}>
                       <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       />
-                      <Marker position={[51.505, -0.09]}>
+                      <Marker position={[41.18519495926073, 20.87718900422315]}>
                           <Popup>
                               A pretty CSS3 popup. <br /> Easily customizable.
                           </Popup>
