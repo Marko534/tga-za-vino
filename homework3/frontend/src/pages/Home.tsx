@@ -12,6 +12,7 @@ interface  HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
     const searchResults = useLoaderData() as SearchResponse | null;
+    console.log(searchResults)
 
     return (
         <div className={"h-[90%] w-full flex flex-col items-center justify-center gap-6"}>
