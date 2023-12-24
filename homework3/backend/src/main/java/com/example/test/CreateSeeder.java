@@ -73,7 +73,7 @@ public class CreateSeeder {
 
             for (Entity winery : GetWineries.getWineInfo()){
                 WineryLocation nodeWineri = new WineryLocation(winery);
-                seedData.add((nodeWineri.getLatitude()+","+nodeWineri.getLatitude()+","+nodeWineri).split(","));
+                seedData.add((nodeWineri.getLatitude()+","+nodeWineri.getLongitude()+","+nodeWineri).split(","));
             }
 
             createFile();

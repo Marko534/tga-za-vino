@@ -9,9 +9,7 @@ type WineComponentProps = {
 
 const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
     const [mapOpen, setMapOpen] = React.useState<boolean>(false);
-<<<<<<< HEAD
     console.log(wine)
-=======
     const wine_image = wine.image_link;
     const alt = "https://vinomarket.mk/wp-content/uploads/2021/03/SHardone-300x300.jpg";
     const [imageSrc, setImageSrc] = useState(wine_image);
@@ -20,7 +18,6 @@ const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
         setImageSrc(alt.toString())
     };
 
->>>>>>> jonatan-homework3
     const handleMapOpen = React.useCallback(() => {
         setMapOpen(true);
     }, [])
@@ -44,12 +41,12 @@ const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
             </div>
             {mapOpen && (
               <div className={"w-full h-[350px]"}>
-                  <MapContainer center={[wine?.winery?.latitude??0, wine?.winery?.longitude??0]} zoom={13} scrollWheelZoom={false}>
+                  <MapContainer center={[wine?.associated_winery?.latitude??0, wine?.associated_winery?.longitude??0]} zoom={13} scrollWheelZoom={false}>
                       <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       />
-                      <Marker position={[wine?.winery?.latitude??0, wine?.winery?.longitude??0]}>
+                      <Marker position={[wine?.associated_winery?.latitude??0, wine?.associated_winery?.longitude??0]}>
                           <Popup>
                               A pretty CSS3 popup. <br /> Easily customizable.
                           </Popup>
