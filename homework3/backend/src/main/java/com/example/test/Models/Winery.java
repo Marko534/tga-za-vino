@@ -1,5 +1,6 @@
 package com.example.test.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,14 +45,16 @@ public class Winery {
     @OneToMany(mappedBy = "winery")
     private List<Location> locations;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "associated_winery")
-    private List<Wine> wines;
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "associated_winery")
+//    private List<Wine> wines;
 
-    @JsonManagedReference
-    public List<Wine> getWines() {
-        return wines;
-    }
+
+//    @JsonManagedReference
+//    public List<Wine> getWines() {
+//        return wines;
+//    }
+
 
     @JsonManagedReference
     public List<Location> getLocations() {
