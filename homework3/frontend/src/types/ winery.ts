@@ -5,5 +5,6 @@ export type Winery = {
     web?: string;
     map_id: string;
     updated_at: string;
-    created_at: string;
+    longitude: number;
+    latitude: number;
 }

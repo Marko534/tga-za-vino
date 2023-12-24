@@ -51,7 +51,7 @@ public class GetWineries implements Sink {
 //    public static void main(String[] args) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("wineries.csv"))) {
-            writer.write("Type,Id,Name,Web,Phone\n");
+            writer.write("Latitude,Longitude,Type,Id,Name,Web,Phone\n");
             for (Entity node : wineInfo) {
 //                Node n = (Node) node;
 //                System.out.println(n.getLatitude());

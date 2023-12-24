@@ -24,17 +24,17 @@ public class Winery {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "location_type", nullable = false)
+    private String location_type;
+
+    @Column(name = "map_id", nullable = false)
+    private String map_id;
+
     @Column(name = "longitude", nullable = false)
     public double longitude;
 
-    @Column(name = "longitude", nullable = false)
+    @Column(name = "latitude", nullable = false)
     public double latitude;
-
-    @Column(name = "location_type", nullable = true)
-    private String location_type;
-
-    @Column(name = "map_id", nullable = true)
-    private String map_id;
 
     @Column(name = "web", nullable = true)
     private String website;
