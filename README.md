@@ -1,6 +1,8 @@
 
 # tga-za-vino
 
+# Live: [T'ga Za Jug](https://tga-za-jug.vercel.app/)
+
 ## Team:
 | Index         | Name     | Surname    |
 |--------------|-----------|------------|
