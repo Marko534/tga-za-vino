@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.WineryPreprocessing;
 
 import lombok.Getter;
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
@@ -52,8 +52,8 @@ public class GetWineriesLocation implements Sink {
 
     public double[] GetCoordinates() {
         double[] ret = new double[2];
-        ret[0]= longitude;
-        ret[1]= latitude;
+        ret[1]= longitude;
+        ret[0]= latitude;
         return ret;
     }
 }

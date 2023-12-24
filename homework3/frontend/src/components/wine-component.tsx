@@ -9,7 +9,7 @@ type WineComponentProps = {
 
 const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
     const [mapOpen, setMapOpen] = React.useState<boolean>(false);
-    console.log(wine)
+    console.log([wine?.associated_winery?.latitude??0, wine?.associated_winery?.longitude??0])
     const wine_image = wine.image_link;
     const alt = "https://vinomarket.mk/wp-content/uploads/2021/03/SHardone-300x300.jpg";
     const [imageSrc, setImageSrc] = useState(wine_image);

@@ -1,6 +1,6 @@
 package com.example.test.PipeAndFilterClasses;
 
-import com.example.test.GetWineries;
+import com.example.test.WineryPreprocessing.GetWineries;
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag;
 

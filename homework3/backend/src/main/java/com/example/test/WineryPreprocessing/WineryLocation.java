@@ -1,7 +1,6 @@
-package com.example.test;
+package com.example.test.WineryPreprocessing;
 
 import crosby.binary.osmosis.OsmosisReader;
-import jakarta.persistence.Column;
 import lombok.Getter;
 import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import org.openstreetmap.osmosis.core.domain.v0_6.Node;

@@ -1,6 +1,8 @@
 package com.example.test;
 
 import com.example.test.PipeAndFilterClasses.*;
+import com.example.test.WineryPreprocessing.GetWineries;
+import com.example.test.WineryPreprocessing.WineryLocation;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -13,7 +15,7 @@ import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import java.io.*;
 import java.util.*;
 
-import static com.example.test.GetWineries.winerySelectionPipe;
+import static com.example.test.WineryPreprocessing.GetWineries.winerySelectionPipe;
 
 public class CreateSeeder {
     public List<String[]> seedData;
