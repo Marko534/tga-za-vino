@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import type {Wine} from "../types/wine.ts";
 import { MapPin } from "lucide-react";
-import {Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
+import {Marker, TileLayer, MapContainer } from "react-leaflet";
 
 type WineComponentProps = {
     wine: Wine;
