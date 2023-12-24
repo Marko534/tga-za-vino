@@ -1,6 +1,7 @@
 package com.example.test;
 
 import crosby.binary.osmosis.OsmosisReader;
+import jakarta.persistence.Column;
 import lombok.Getter;
 import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
 import org.openstreetmap.osmosis.core.domain.v0_6.Node;
@@ -17,8 +18,10 @@ public class WineryLocation {
 
     @Getter
     public double longitude;
+
     @Getter
     public double latitude;
+
     boolean isNode;
 
     public WineryLocation(Entity wineryNode) {
