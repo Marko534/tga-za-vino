@@ -41,7 +41,7 @@ public class CreateSeeder {
 
         if(!csvExists) {
             //Pipe & Filter
-            Homework1 csvGenerator =  new Homework1();
+            GetWineries csvGenerator =  new GetWineries();
 
             csvGenerator.generateCsv();
         }

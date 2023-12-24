@@ -13,7 +13,7 @@ public class MultipleNamesRemovalFilter<T extends EntityContainer> implements Fi
     public T execute(T node) {
         if(node!=null){
             List<Tag> tagList = node.getEntity().getTags().stream().toList();
-            List<String> keys = tagList.stream().map(Tag::getKey).collect(Collectors.toList());
+            List<String> keys = tagList.stream().map(Tag::getKey).toList();
             List<Integer> indexesToRemove = new ArrayList<>();
             for(String key : keys){
                 if(key.equals("name:en")&&keys.contains("name")){
