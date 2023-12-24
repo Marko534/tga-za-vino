@@ -47,9 +47,6 @@ const WineComponent: React.FC<WineComponentProps> = ({wine}) => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       />
                       <Marker position={[wine?.associated_winery?.latitude??0, wine?.associated_winery?.longitude??0]}>
-                          <Popup>
-                              A pretty CSS3 popup. <br /> Easily customizable.
-                          </Popup>
                       </Marker>
                   </MapContainer>
               </div>
