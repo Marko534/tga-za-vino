@@ -9,12 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import java.util.*;
+
 
 @RestController
 @RequestMapping(value = "/api")
 @Validated
-@CrossOrigin(origins="*")
+@CrossOrigin
 public class WineryController {
     private final WineryService wineryService;
     private final WineService wineService;
@@ -39,8 +42,7 @@ public class WineryController {
         Iterable <Wine> winesitr = wineService.findAll();
         List <Wine> wines = new ArrayList<>();
         winesitr.forEach(w->wines.add(w));
-        Random random = new Random();
-        Wine w = wines.get(random.nextInt(0,wines.size()));
+        Wine w = wines.get(ThreadLocalRandom.current().nextInt(wines.size() - 1));
         return new ResponseEntity<>(w, HttpStatus.OK);
     }
     @GetMapping("/search")

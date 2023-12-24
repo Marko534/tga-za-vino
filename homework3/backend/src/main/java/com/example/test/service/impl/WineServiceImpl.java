@@ -55,5 +55,4 @@ public class WineServiceImpl implements WineService {
     public List<Wine> findAllByNameContains(String word) {
         return wineRepository.findAllByNameContains(word);
     }
-
 }
