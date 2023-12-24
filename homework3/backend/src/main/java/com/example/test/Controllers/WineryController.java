@@ -44,11 +44,10 @@ public class WineryController {
         return new ResponseEntity<>(w, HttpStatus.OK);
     }
     @GetMapping("/search")
-    public ResponseEntity<List<Object>> searchByKeyword(@RequestParam String query) {
-        List<Object> response = new ArrayList<>();
-        response.addAll(wineService.findWineByKeyWord(query));
-        response.addAll(wineryService.findWineriesByKeyWord(query));
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public Map<String, Object> searchByKeyword(@RequestParam String query) {
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("wines", wineService.findWineByKeyWord(query));
+        response.put("winery", wineryService.findWineriesByKeyWord(query));
+        return response;
     }
-
 }
