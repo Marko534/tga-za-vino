@@ -1,11 +1,10 @@
 package com.example.test;
 
 import com.example.test.PipeAndFilterClasses.*;
-import com.example.test.service.GetWineriesLocation;
 import crosby.binary.osmosis.OsmosisReader;
-import org.apache.commons.collections4.Get;
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
-import org.springframework.boot.SpringApplication;
+import org.openstreetmap.osmosis.core.domain.v0_6.Entity;
+import org.openstreetmap.osmosis.core.domain.v0_6.Node;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
@@ -42,10 +41,15 @@ public class TgaZaJugApplication {
         getWineries.setSink(new GetWineries());
         getWineries.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
 
-        getWineries.setSink(new GetWineriesLocation(GetWineries.getWineInfo()));
-        getWineries.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
+        for (Entity winery : GetWineries.getWineInfo()){
+                WineryLocation nodeWineri = new WineryLocation(winery);
+                System.out.print( nodeWineri.getLatitude()+","+nodeWineri.getLatitude()+","+nodeWineri);
+        }
 
-        GetWineries.generateCsv();
+//        getWineries.setSink(new GetWineriesLocation(GetWineries.getWineInfo()));
+//        getWineries.run(); // calls the "void process(EntityContainer e)" method in a multi-thread style, then the process() method uses the winerySelectionPipe in order to filter all non-winery entities present and all the other needed filters for the wineries
+
+//        GetWineries.generateCsv();
 
     }
 }

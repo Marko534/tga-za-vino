@@ -16,12 +16,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Winery {
+
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "longitude", nullable = false)
+    public double longitude;
+
+    @Column(name = "longitude", nullable = false)
+    public double latitude;
 
     @Column(name = "location_type", nullable = true)
     private String location_type;
