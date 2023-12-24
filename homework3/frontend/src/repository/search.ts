@@ -14,6 +14,7 @@ export type SearchResponse = {
 export async function search({ query }: SearchRequestParams) {
     const response = await fetch(`${serverApi}/search?query=${query}`, {
         method: "GET",
+        mode: "cors",
         headers: {
             "Content-Type": "application/json",
         }

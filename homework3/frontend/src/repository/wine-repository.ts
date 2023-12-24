@@ -28,6 +28,7 @@ export async function fetchWine({ wineId }: FetchWineParams) {
 export async function getRandomWineId() {
     const response = await fetch(`${serverApi}/wines/random`, {
         method: "GET",
+        mode: 'cors',
         headers: {
             "Content-Type": "application/json",
         }
