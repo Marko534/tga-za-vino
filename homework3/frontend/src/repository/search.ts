@@ -18,5 +18,5 @@ export async function search({ query }: SearchRequestParams) {
             "Content-Type": "application/json",
         }
     })
-    return await response.json() as Promise<{ data: string[]}>
+    return await response.json() as Promise<SearchResponse>
 }

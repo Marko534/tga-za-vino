@@ -12,9 +12,9 @@ public class TgaZaJugApplication {
 //        checkStarterFiles();
 //        SpringApplication.run(TgaZaJugApplication.class, args);
 
-        CreateSeeder seeder = new CreateSeeder();
-
-        seeder.checkFiles();
+//        CreateSeeder seeder = new CreateSeeder();
+//
+//        seeder.checkFiles();
 
         SpringApplication.run(TgaZaJugApplication.class, args);
     }
