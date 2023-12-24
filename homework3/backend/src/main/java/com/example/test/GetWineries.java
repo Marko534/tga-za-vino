@@ -3,6 +3,7 @@ package com.example.test;
 import java.io.IOException;
 
 import com.example.test.PipeAndFilterClasses.*;
+import lombok.Getter;
 import org.openstreetmap.osmosis.core.domain.v0_6.*;
 
 import java.io.*;
@@ -10,12 +11,13 @@ import java.util.*;
 
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer;
 import org.openstreetmap.osmosis.core.task.v0_6.Sink;
-import crosby.binary.osmosis.OsmosisReader;
 
 
 public class GetWineries implements Sink {
+    @Getter
     public static Set<Entity> wineInfo;
     public static Map<String, String> filterMap;
+
     public static Pipe<EntityContainer> winerySelectionPipe;
 
     @Override
