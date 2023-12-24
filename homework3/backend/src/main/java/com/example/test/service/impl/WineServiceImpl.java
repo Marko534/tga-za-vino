@@ -1,6 +1,7 @@
 package com.example.test.service.impl;
 
 import com.example.test.Models.Wine;
+import com.example.test.Models.Winery;
 import com.example.test.Repositories.WineRepository;
 import com.example.test.Repositories.WineryRepository;
 import com.example.test.service.WineService;
@@ -48,6 +49,11 @@ public class WineServiceImpl implements WineService {
     @Override
     public Optional<Wine> findById(UUID id) {
         return this.wineRepository.findById(id);
+    }
+
+    @Override
+    public List<Wine> findAllByNameContains(String word) {
+        return wineRepository.findAllByNameContains(word);
     }
 
 }

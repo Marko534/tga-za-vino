@@ -43,7 +43,8 @@ public class Wine {
     @Column(name = "updated_at")
     private Date  updated_at;
 
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "winery_id")
     private Winery associated_winery;
