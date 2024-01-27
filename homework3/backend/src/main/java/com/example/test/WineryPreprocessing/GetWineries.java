@@ -46,7 +46,7 @@ public class GetWineries implements Sink {
     @Override
     public void close() {
     }
-
+    
     public static void generateCsv() {
 //    public static void main(String[] args) {
 
