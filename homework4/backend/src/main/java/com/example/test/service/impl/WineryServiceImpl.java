@@ -3,6 +3,7 @@ package com.example.test.service.impl;
 import com.example.test.Models.Winery;
 import com.example.test.Repositories.WineryRepository;
 import com.example.test.service.WineryService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class WineryServiceImpl implements WineryService {
         return wineryRepository.findAll();
     }
 
+    //REFACTOR
     @Override
     public List<Winery> findWineriesByKeyWord(String keyword) {
         List<Winery> wineries = new ArrayList<>();
@@ -33,7 +35,7 @@ public class WineryServiceImpl implements WineryService {
                 .filter(w->w.getName().contains(keyword))
                 .collect(Collectors.toList());
     }
-
+    //REFACTOR
     @Override
     public Optional<Winery> findWineryByName(String name) {
         List<Winery> wineries = new ArrayList<>();
@@ -45,7 +47,7 @@ public class WineryServiceImpl implements WineryService {
     }
 
     @Override
-    public Optional<Winery> findById(UUID id) {
+    public Optional<Winery> findById( UUID id) {
         return this.wineryRepository.findById(id);
     }
 }

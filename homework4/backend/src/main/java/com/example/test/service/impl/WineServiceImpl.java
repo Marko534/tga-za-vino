@@ -25,7 +25,7 @@ public class WineServiceImpl implements WineService {
     public Iterable <Wine> findAll() {
         return wineRepository.findAll();
     }
-
+    //REFACTOR
     @Override
     public List<Wine> findWineByKeyWord(String keyword) {
         List<Wine> wines = new ArrayList<>();
@@ -35,7 +35,7 @@ public class WineServiceImpl implements WineService {
                 .filter(w->w.getName().contains(keyword))
                 .collect(Collectors.toList());
     }
-
+    //REFACTOR
     @Override
     public Optional<Wine> findWineByName(String name) {
         List<Wine> wines = new ArrayList<>();
