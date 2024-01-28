@@ -37,7 +37,9 @@ const SearchComponent: React.FC<SearchProps> = ({ searchResults }) => {
         )}
       </div>
 
-      <div className={'w-full rounded-lg p-8 h-full flex flex-col items-start justify-start gap-4 bg-white/50'}>
+      <div
+        className={'w-full rounded-lg p-4 max-h-[90%] h-full flex flex-col items-start justify-start gap-4 bg-white/50'}
+      >
         {Object.entries(searchResults).map(([key, value]) => {
           if (!value?.length) return null;
           return (
