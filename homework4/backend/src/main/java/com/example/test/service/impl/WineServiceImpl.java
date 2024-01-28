@@ -26,36 +26,15 @@ public class WineServiceImpl implements WineService {
     public Iterable <Wine> findAll() {
         return wineRepository.findAll();
     }
-    //REFACTOR
+
     @Override
     public List<Wine> findWineByKeyWord(String keyword) {
-//        List<Wine> wines = new ArrayList<>();
-//        findAll().forEach(w->wines.add(w));
-//        return wines
-//                .stream()
-//                .filter(w->w.getName().contains(keyword))
-//                .collect(Collectors.toList());
-        return wineRepository.findAllByNameContainsIgnoreCase(keyword);
-    }
-    //REFACTOR
-    @Override
-    public Optional<Wine> findWineByName(String name) {
-        List<Wine> wines = new ArrayList<>();
-        findAll().forEach(w->wines.add(w));
-        return wines
-                .stream()
-                .filter(w->w.getName().equals(name))
-                .findFirst();
+        return wineRepository.findAllByNameContainsIgnoreCaseOrderByName(keyword);
     }
 
     @Override
     public Optional<Wine> findById(UUID id) {
         return this.wineRepository.findById(id);
-    }
-
-    @Override
-    public List<Wine> findAllByNameContains(String word) {
-        return wineRepository.findAllByNameContainsIgnoreCase(word);
     }
 
     @Override

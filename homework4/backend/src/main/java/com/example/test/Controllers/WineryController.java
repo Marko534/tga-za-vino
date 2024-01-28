@@ -52,15 +52,14 @@ public class WineryController {
                                                @RequestParam(required = false) String priceTo) {
         HashMap<String, Object> response = new HashMap<>();
         if(query!=null && (priceFrom == null || priceTo==null)){
-            response.put("wines", wineService.findWineByKeyWord('%'+query+'%'));
+            response.put("wines", wineService.findWineByKeyWord(query));
             response.put("winery", wineryService.findWineriesByKeyWord(query));
         } else if (query==null){
             response.put("wines", wineService.findAllByPriceBetween(Integer.parseInt(priceFrom), Integer.parseInt(priceTo)));
-            //response.put("winery", wineryService.findWineriesByKeyWord(query));
             response.put("winery", null);
         } else{
             response.put("wines", wineService.findAllByPriceBetweenAndNameContains(query, Integer.parseInt(priceFrom), Integer.parseInt(priceTo)));
-            response.put("winery", null);
+            response.put("winery", wineryService.findWineriesByKeyWord(query));
         }
         return response;
     }

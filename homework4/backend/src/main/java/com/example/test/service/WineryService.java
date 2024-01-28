@@ -8,9 +8,7 @@ import java.util.UUID;
 
 public interface WineryService {
     Iterable<Winery> findAll();
-
     List <Winery> findWineriesByKeyWord(String keyword);
-    Optional<Winery> findWineryByName(String name);
     Optional<Winery> findById(UUID id);
     
 }

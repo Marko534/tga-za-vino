@@ -25,26 +25,11 @@ public class WineryServiceImpl implements WineryService {
         return wineryRepository.findAll();
     }
 
-    //REFACTOR
     @Override
     public List<Winery> findWineriesByKeyWord(String keyword) {
-        List<Winery> wineries = new ArrayList<>();
-        findAll().forEach(w->wineries.add(w));
-        return wineries
-                .stream()
-                .filter(w->w.getName().contains(keyword))
-                .collect(Collectors.toList());
+        return wineryRepository.findAllByNameContainsIgnoreCaseOrderByName(keyword);
     }
-    //REFACTOR
-    @Override
-    public Optional<Winery> findWineryByName(String name) {
-        List<Winery> wineries = new ArrayList<>();
-        findAll().forEach(w->wineries.add(w));
-        return wineries
-                .stream()
-                .filter(w->w.getName().equals(name))
-                .findFirst();
-    }
+
 
     @Override
     public Optional<Winery> findById( UUID id) {

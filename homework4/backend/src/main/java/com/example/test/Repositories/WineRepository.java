@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WineRepository extends CrudRepository <Wine, UUID>{
-    List<Wine> findAllByNameContainsIgnoreCase(String name);
+    List<Wine> findAllByNameContainsIgnoreCaseOrderByName(String name);
     @Query(value = "SELECT * " +
             "FROM wine " +
             "WHERE (price LIKE '% ден' " +
             "AND CAST(REPLACE(SUBSTRING(price, 1, POSITION(' ' IN price)), '.', '') AS INT) BETWEEN :minPrice AND :maxPrice) " +
-            "OR (price LIKE '€ %' AND (CAST(REPLACE(SUBSTRING(price, POSITION(' ' IN price)), ',00', '') AS INT) * 61) BETWEEN :minPrice AND :maxPrice)",
+            "OR (price LIKE '€ %' AND (CAST(REPLACE(SUBSTRING(price, POSITION(' ' IN price)), ',00', '') AS INT) * 61) BETWEEN :minPrice AND :maxPrice) ORDER BY name",
             nativeQuery = true)
     List<Wine> findByPriceInterval(@Param("minPrice") int minPrice,
                                          @Param("maxPrice") int maxPrice);
@@ -25,10 +25,8 @@ public interface WineRepository extends CrudRepository <Wine, UUID>{
             "FROM wine " +
             "WHERE LOWER(name) LIKE LOWER(CONCAT('%', :wName, '%')) AND ((price LIKE '% ден' " +
             "AND CAST(REPLACE(SUBSTRING(price, 1, POSITION(' ' IN price)), '.', '') AS INT) BETWEEN :minPrice AND :maxPrice) " +
-            "OR (price LIKE '€ %' AND (CAST(REPLACE(SUBSTRING(price, POSITION(' ' IN price)), ',00', '') AS INT) * 61) BETWEEN :minPrice AND :maxPrice))",
+            "OR (price LIKE '€ %' AND (CAST(REPLACE(SUBSTRING(price, POSITION(' ' IN price)), ',00', '') AS INT) * 61) BETWEEN :minPrice AND :maxPrice)) ORDER BY name",
             nativeQuery = true)
     List<Wine> findByPriceIntervalAndNameContainingIgnoreCase(@Param("wName") String wName, @Param("minPrice") int minPrice,
                                    @Param("maxPrice") int maxPrice);
-
-
 }

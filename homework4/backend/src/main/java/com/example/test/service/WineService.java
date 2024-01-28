@@ -12,10 +12,8 @@ public interface WineService {
     Iterable<Wine> findAll();
 
     List<Wine> findWineByKeyWord(String keyword);
-    Optional<Wine> findWineByName(String name);
-    Optional<Wine> findById(UUID id);
 
-    List<Wine> findAllByNameContains(String word);
+    Optional<Wine> findById(UUID id);
 
     List<Wine> findAllByPriceBetween(int n1, int n2);
 

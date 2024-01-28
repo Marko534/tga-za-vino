@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WineryRepository  extends CrudRepository<Winery, UUID> {
-
-    List<Winery> findWineryByName(String name);
+    List<Winery> findAllByNameContainsIgnoreCaseOrderByName(String name);
 }
 
