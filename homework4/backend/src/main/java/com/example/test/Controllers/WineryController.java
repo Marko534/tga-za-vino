@@ -13,7 +13,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.*;
 
-
 @RestController
 @RequestMapping(value = "/api")
 @Validated
@@ -39,17 +38,10 @@ public class WineryController {
 
     @GetMapping("/wines/random")
     ResponseEntity<Wine> getRandomWine() {
-        Iterable <Wine> winesitr = wineService.findAll();
-        List <Wine> wines = new ArrayList<>();
-        winesitr.forEach(w->wines.add(w));
+        Iterable<Wine> winesitr = wineService.findAll();
+        List<Wine> wines = new ArrayList<>();
+        winesitr.forEach(w -> wines.add(w));
         Wine w = wines.get(ThreadLocalRandom.current().nextInt(wines.size() - 1));
         return new ResponseEntity<>(w, HttpStatus.OK);
-    }
-    @GetMapping("/search")
-    public Map<String, Object> searchByKeyword(@RequestParam String query) {
-        HashMap<String, Object> response = new HashMap<>();
-        response.put("wines", wineService.findWineByKeyWord(query));
-        response.put("winery", wineryService.findWineriesByKeyWord(query));
-        return response;
     }
 }
