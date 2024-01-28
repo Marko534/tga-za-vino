@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.*;
@@ -46,10 +47,22 @@ public class WineryController {
         return new ResponseEntity<>(w, HttpStatus.OK);
     }
     @GetMapping("/search")
-    public Map<String, Object> searchByKeyword(@RequestParam String query) {
+    public Map<String, Object> searchByKeyword(@RequestParam(required = false) String query,
+                                               @RequestParam(required = false) String priceFrom,
+                                               @RequestParam(required = false) String priceTo) {
         HashMap<String, Object> response = new HashMap<>();
-        response.put("wines", wineService.findWineByKeyWord(query));
-        response.put("winery", wineryService.findWineriesByKeyWord(query));
+        if(query!=null && (priceFrom == null || priceTo==null)){
+            response.put("wines", wineService.findWineByKeyWord('%'+query+'%'));
+            response.put("winery", wineryService.findWineriesByKeyWord(query));
+        } else if (query==null){
+            response.put("wines", wineService.findAllByPriceBetween(Integer.parseInt(priceFrom), Integer.parseInt(priceTo)));
+            //response.put("winery", wineryService.findWineriesByKeyWord(query));
+            response.put("winery", null);
+        } else{
+            response.put("wines", wineService.findAllByPriceBetweenAndNameContains(query, Integer.parseInt(priceFrom), Integer.parseInt(priceTo)));
+            response.put("winery", null);
+        }
         return response;
     }
+
 }
