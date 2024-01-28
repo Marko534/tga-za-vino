@@ -12,7 +12,7 @@ export type SearchResponse = {
 };
 
 export async function search({ query }: SearchRequestParams) {
-  const response = await fetch(`${searchApi}/search?query=${query}&priceFrom=${0}&priceTo=${255}`, {
+  const response = await fetch(`${searchApi}/search?query=${query}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
