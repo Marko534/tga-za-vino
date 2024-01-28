@@ -48,7 +48,7 @@ const WineComponent: React.FC<WineComponentProps> = ({ wine }) => {
           alt={wine.name}
           onError={handleImageNotOpened}
           className={
-            'w-full max-w-full h-full object-cover md:col-span-1 rounded-lg md:rounded-b-none md:rounded-tr-none md:rounded-tl-lg'
+            'w-full max-w-full h-full min-h-full object-cover md:col-span-1 rounded-lg md:rounded-b-none md:rounded-tr-none md:rounded-tl-lg'
           }
         />
         <div className={'w-full col-span-2  flex flex-col items-start justify-between gap-4  py-0 md:py-4'}>

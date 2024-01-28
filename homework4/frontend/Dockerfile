@@ -1,12 +1,14 @@
-FROM node:lts-alpine
+FROM node:lts-alpine 
+WORKDIR /app
 
-COPY . /frontend
+COPY package.json .
 
-WORKDIR /frontend
+RUN NODE_ENV=development npm i
 
-RUN npm install
+COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
+EXPOSE 4173
 
-CMD npm run build && npm run start
+CMD [ "npm", "run", "preview" ]

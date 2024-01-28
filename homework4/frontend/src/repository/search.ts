@@ -1,7 +1,6 @@
 import { Wine } from '../types/wine.ts';
 import { Winery } from '../types/ winery.ts';
-// import { serverApi } from '../constants/server.ts';
-import { microApi } from '../constants/server.ts';
+import { searchApi } from '../constants/server.ts';
 
 type SearchRequestParams = {
   query: string;
@@ -9,11 +8,11 @@ type SearchRequestParams = {
 
 export type SearchResponse = {
   wines: Wine[];
-  wineries: Winery[];
+  winery: Winery[];
 };
 
 export async function search({ query }: SearchRequestParams) {
-  const response = await fetch(`${microApi}/search?query=${query}`, {
+  const response = await fetch(`${searchApi}/search?query=${query}&priceFrom=${0}&priceTo=${255}`, {
     method: 'GET',
     mode: 'cors',
     headers: {

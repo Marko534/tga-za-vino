@@ -1,0 +1,29 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: homework4-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: homework4-main
+          uri: http://127.0.0.1:7500/main/api
+          predicates:
+            - Path=/main/**
+        - id: homework4-search
+          uri: http://127.0.0.1:7502/search/api
+          predicates:
+            - Path=/search/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    gateway:
+      enabled: true
+# eureka:
+#   instance:
+#     prefer-ip-address: true

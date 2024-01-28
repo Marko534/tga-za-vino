@@ -2,8 +2,8 @@ import React from 'react';
 import { SearchResponse } from '../repository/search';
 import { Winery } from '../types/ winery';
 import { Wine } from '../types/wine';
-import SearchItem from './home-search-item';
 import { capitalize } from '../utils/capitalize';
+import SearchItem from './home-search-item';
 
 type SearchProps = {
   searchResults: SearchResponse | null;
@@ -14,7 +14,7 @@ const SearchComponent: React.FC<SearchProps> = ({ searchResults }) => {
     return null;
   }
 
-  if (searchResults?.wines?.length === 0 && searchResults?.wineries?.length === 0) {
+  if (searchResults?.wines?.length === 0 && searchResults?.winery?.length === 0) {
     return <h1 className={'text-white font-bold text-4xl'}>No results found</h1>;
   }
 
@@ -24,12 +24,15 @@ const SearchComponent: React.FC<SearchProps> = ({ searchResults }) => {
         <button className="px-4 py-2 text-lg text-white transition-all duration-150 ease-in-out rounded-md bg-bgPurple hover:scale-105">
           {searchResults && 'All'}
         </button>
-        <button className="px-4 py-2 text-lg text-white transition-all duration-150 ease-in-out rounded-md bg-bgPurple hover:scale-105">
-          {searchResults?.wines && 'Wines: ' + searchResults.wines.length}
-        </button>
-        {searchResults?.wineries && (
+        {searchResults?.wines.length > 0 && (
           <button className="px-4 py-2 text-lg text-white transition-all duration-150 ease-in-out rounded-md bg-bgPurple hover:scale-105">
-            {searchResults?.wineries && 'Wineries: ' + searchResults.wineries.length}
+            {searchResults?.wines && 'Wines: ' + searchResults.wines.length}
+          </button>
+        )}
+
+        {searchResults?.winery?.length > 0 && (
+          <button className="px-4 py-2 text-lg text-white transition-all duration-150 ease-in-out rounded-md bg-bgPurple hover:scale-105">
+            {searchResults?.winery && 'Wineries: ' + searchResults.winery.length}
           </button>
         )}
       </div>

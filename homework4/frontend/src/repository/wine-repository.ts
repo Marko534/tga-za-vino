@@ -1,5 +1,5 @@
 import type { Wine } from '../types/wine.ts';
-import { serverApi } from '../constants/server.ts';
+import { mainApi } from '../constants/server.ts';
 
 type FetchWineParams = {
   wineId: string | undefined;
@@ -16,7 +16,7 @@ export async function fetchWine({ wineId }: FetchWineParams) {
       },
     });
   }
-  const response = await fetch(`${serverApi}/wines/${wineId}`, {
+  const response = await fetch(`${mainApi}/wines/${wineId}`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
@@ -29,7 +29,7 @@ export async function fetchWine({ wineId }: FetchWineParams) {
 }
 
 export async function getRandomWineId() {
-  const response = await fetch(`${serverApi}/wines/random`, {
+  const response = await fetch(`${mainApi}/wines/random`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
