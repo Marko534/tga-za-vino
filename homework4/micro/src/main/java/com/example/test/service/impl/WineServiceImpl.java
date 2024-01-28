@@ -7,6 +7,7 @@ import com.example.test.Repositories.WineryRepository;
 import com.example.test.service.WineService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,37 +23,23 @@ public class WineServiceImpl implements WineService {
     }
 
     @Override
-    public Iterable <Wine> findAll() {
+    public Iterable<Wine> findAll() {
         return wineRepository.findAll();
     }
-    //REFACTOR
+
+    // REFACTOR
     @Override
     public List<Wine> findWineByKeyWord(String keyword) {
-        List<Wine> wines = new ArrayList<>();
-        findAll().forEach(w->wines.add(w));
-        return wines
-                .stream()
-                .filter(w->w.getName().contains(keyword))
-                .collect(Collectors.toList());
-    }
-    //REFACTOR
-    @Override
-    public Optional<Wine> findWineByName(String name) {
-        List<Wine> wines = new ArrayList<>();
-        findAll().forEach(w->wines.add(w));
-        return wines
-                .stream()
-                .filter(w->w.getName().equals(name))
-                .findFirst();
+        return wineRepository.findAllByNameContainsIgnoreCaseOrderByName(keyword);
     }
 
     @Override
-    public Optional<Wine> findById(UUID id) {
-        return this.wineRepository.findById(id);
+    public List<Wine> findAllByPriceBetween(int n1, int n2) {
+        return wineRepository.findByPriceInterval(n1, n2);
     }
 
     @Override
-    public List<Wine> findAllByNameContains(String word) {
-        return wineRepository.findAllByNameContains(word);
+    public List<Wine> findAllByPriceBetweenAndNameContains(String name, int n1, int n2) {
+        return wineRepository.findByPriceIntervalAndNameContainingIgnoreCase(name, n1, n2);
     }
 }
