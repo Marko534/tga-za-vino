@@ -1,0 +1,33 @@
+version: "3"
+services:
+  gateway:
+    platform: linux/x86_64
+    build:
+      context: ./homework-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    depends_on:
+      - search
+      - main
+  search:
+    platform: linux/x86_64
+    build:
+      context: ./homework-search
+      dockerfile: Dockerfile
+    ports:
+      - "7502:2222"
+  main:
+    platform: linux/x86_64
+    build:
+      context: ./homework-main
+      dockerfile: Dockerfile
+    ports:
+      - "7500:2222"
+  frontend:
+    platform: linux/x86_64
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:4173"

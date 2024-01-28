@@ -15,6 +15,7 @@ import java.util.*;
 @RequestMapping(value = "/api")
 @Validated
 @CrossOrigin(origins="*")
+
 public class WineryController {
     private final WineryService wineryService;
     private final WineService wineService;
