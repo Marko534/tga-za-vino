@@ -61,7 +61,18 @@ const WineryComponent: React.FC<WineryComponentProps> = ({ winery }) => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={L.latLng(winery.latitude, winery.longitude)}>
+            <Marker
+              position={L.latLng(winery.latitude, winery.longitude)}
+              icon={L.icon({
+                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png',
+                iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon-2x.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png',
+                shadowSize: [41, 41],
+              })}
+            >
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>

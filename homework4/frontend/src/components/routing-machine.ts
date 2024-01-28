@@ -48,6 +48,7 @@ const createRoutingMachineLayer = (props: RoutingMachineProps) => {
       createMarker: function (i, wp) {
         return L.marker(wp.latLng, {
           draggable: false,
+          alt: i.toString(),
           icon: L.icon({
             iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png',
             iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon-2x.png',
