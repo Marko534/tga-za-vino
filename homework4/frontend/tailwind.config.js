@@ -1,14 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        bgPurple: "#500F47",
-        bgPink: "#9E2333"
+        bgPurple: '#500F47',
+        bgPink: '#9E2333',
       },
       animation: {
         border: 'background ease infinite',
@@ -20,10 +17,9 @@ export default {
         },
       },
       fontFamily: {
-        "Corporate": ['CorporateGothic', 'sans-serif'],
-      }
+        Corporate: ['CorporateGothic', 'sans-serif'],
+      },
     },
-
   },
   plugins: [],
 };

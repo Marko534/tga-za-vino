@@ -56,14 +56,14 @@ const WineComponent: React.FC<WineComponentProps> = ({ wine }) => {
             <h1 className={'font-sans text-4xl font-bold'}>{wine.name}</h1>
             <h3 className={'font-sans text-2xl font-semibold'}>{wine.price}</h3>
             <p className={'font-sans text-xl font-medium'}>Available in: {wine?.associated_winery?.name}</p>
-            <div className="flex flex-row items-center justify-between w-full gap-4">
+            <div className="flex flex-row items-center justify-between w-full gap-2">
               <button
                 onClick={handleMapOpen}
                 style={{
                   backgroundColor: mapOpen ? theme.bgPink : theme.bgPurple,
                 }}
                 className={
-                  'w-full py-2 px-4 flex items-center justify-center gap-2 text-white  rounded-md hover:scale-105 transition-all ease-in-out duration-150'
+                  'max-w-[90%] w-full py-2 px-4 flex items-center justify-center gap-2 text-white  rounded-md hover:scale-105 transition-all ease-in-out duration-150'
                 }
               >
                 {mapOpen ? (
@@ -83,7 +83,7 @@ const WineComponent: React.FC<WineComponentProps> = ({ wine }) => {
                   style={{
                     backgroundColor: showDirections ? theme.bgPink : theme.bgPurple,
                   }}
-                  className="flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-all duration-150 ease-in-out rounded-md hover:scale-105"
+                  className="max-w-[90%] flex items-center justify-center w-full gap-2 px-4 py-2 text-white transition-all duration-150 ease-in-out rounded-md hover:scale-105"
                   onClick={handleDirections}
                 >
                   {showDirections ? (

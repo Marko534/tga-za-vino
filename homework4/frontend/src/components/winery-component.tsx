@@ -6,6 +6,7 @@ import { useGeolocation } from '@uidotdev/usehooks';
 import { BarLoader } from 'react-spinners';
 import L from 'leaflet';
 import { theme } from '../constants/theme.ts';
+import { CompassIcon, XIcon } from 'lucide-react';
 
 type WineryComponentProps = {
   winery: Winery;
@@ -29,12 +30,23 @@ const WineryComponent: React.FC<WineryComponentProps> = ({ winery }) => {
       <div className={'flex flex-row items-center justify-between w-full p-4'}>
         <h1 className={'font-sans text-4xl font-bold'}>{winery.name}</h1>
         <button
+          style={{
+            backgroundColor: showDirections ? theme.bgPink : theme.bgPurple,
+          }}
+          className="flex items-center justify-center max-w-[200px] gap-2 px-4 py-2 text-white transition-all duration-150 ease-in-out rounded-md hover:scale-105"
           onClick={handleDirections}
-          className={
-            'max-w-[300px] w-full py-2 px-4 flex items-center justify-center gap-2 text-white bg-bgPurple rounded-md hover:scale-105 transition-all ease-in-out duration-150'
-          }
         >
-          {showDirections ? 'Hide directions' : 'Show directions'}
+          {showDirections ? (
+            <>
+              <XIcon size={24} />
+              Hide directions
+            </>
+          ) : (
+            <>
+              <CompassIcon size={24} />
+              Show directions
+            </>
+          )}
         </button>
       </div>
 

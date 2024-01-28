@@ -7,6 +7,11 @@
   src: url('../Copperplate-Gothic-Bold-Regular.ttf');
 }
 
+html {
+  background: linear-gradient(90deg, #9e2333 0%, #500f47 100%);
+  background-color: #9e2333;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100%;
