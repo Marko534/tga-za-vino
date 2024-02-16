@@ -21,11 +21,12 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: async ({ request }) => {
           const url = new URL(request.url);
-          const searchTerm = url.searchParams.get('query');
-
+          const searchTerm = url.searchParams.get('query')
+          const priceFrom = url.searchParams.get('priceFrom')
+          const priceTo = url.searchParams.get('priceTo')
           if (!searchTerm) return null;
 
-          return search({ query: searchTerm });
+          return search({ query: searchTerm, priceFrom: priceFrom, priceTo: priceTo });
         },
       },
       {
